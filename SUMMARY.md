@@ -32,3 +32,4 @@
 * [Introduction](object-oriented-programming/introduction.md)
 * [Class](object-oriented-programming/class.md)
 * [Object](object-oriented-programming/object.md)
+* [Encapsulation](object-oriented-programming/encapsulation.md)

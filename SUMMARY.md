@@ -31,5 +31,6 @@
 
 * [Introduction](object-oriented-programming/introduction.md)
 * [Class](object-oriented-programming/class.md)
+* [Constructor](object-oriented-programming/constructor.md)
 * [Object](object-oriented-programming/object.md)
 * [Encapsulation](object-oriented-programming/encapsulation.md)

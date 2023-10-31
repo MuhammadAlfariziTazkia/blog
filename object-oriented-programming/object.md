@@ -50,7 +50,7 @@ class Monster {
 This is the basic syntax to create an object :&#x20;
 
 ```
-<class_name> <var/object_name> = new <class_name>
+<class_name> <var/object_name> = new <class_name><constructor>;
 ```
 
 For the example we want to create an object in `Main.java` file
@@ -79,3 +79,11 @@ public class Main {
 }
 ```
 {% endcode %}
+
+
+
+**By the way, when you not create any constructor in the class, by default class will have 1 constructor empty parameter, so you can use it by**
+
+```
+MyClass c = new MyClass(); // call empty constructor
+```

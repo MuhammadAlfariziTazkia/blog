@@ -16,13 +16,13 @@ So in `Monster` class, we should create a special method which allow us to const
 
 ```
 class Monster {
-    string name;
+    String name;
     int hp;
     int damage;
     int speed;
     
     // constructor
-    Monster (string name, int hp, int damage, int speed) {
+    Monster (String name, int hp, int damage, int speed) {
         this.name = name;
         this.hp = hp;
         this.damage = damage;
@@ -41,13 +41,13 @@ Code snippets above is the common way to create constructor. But, if you still c
 
 ```
 class Monster {
-    string name;
+    String name;
     int hp;
     int damage;
     int speed;
     
     // constructor
-    Monster (string paramName, int paramHp, int paramDamage, int paramSpeed) {
+    Monster (String paramName, int paramHp, int paramDamage, int paramSpeed) {
         this.name = paramName;
         this.hp = paramHp;
         this.damage = paramDamage;
@@ -69,13 +69,13 @@ Yap we can create 2 constructor to provide 2 these ways
 
 ```
 class Monster {
-    string name;
+    String name;
     int hp;
     int damage;
     int speed;
     
     // first way constructor -> set all of 
-    Monster (string name, int hp, int damage, int speed) {
+    Monster (String name, int hp, int damage, int speed) {
         this.name = name;
         this.hp = hp;
         this.damage = damage;
@@ -83,7 +83,7 @@ class Monster {
     }
     
     // second way -> we want to set default value for hp and speed
-    Monster (string name, string damage) {
+    Monster (String name, int damage) {
         this.name = name;
         this.damage = damage;
         
@@ -93,3 +93,7 @@ class Monster {
     }
 }
 ```
+
+## What's next?
+
+We already prepare our constructor, so we will create the terrible monster object in the next section!

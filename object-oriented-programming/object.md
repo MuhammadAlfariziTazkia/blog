@@ -8,22 +8,40 @@ Object is the instance of the class
 
 In the class, we already define a blueprint to create an object right? So object is the instance of that
 
-For the example we already have `Vehicle.java` that contain a code of Vehicle class
+For the example we already have `Monster.java` that contain a code of Monster class
 
-{% code title="Vehicle.java" %}
+{% code title="Monster.java" %}
 ```
-public class Vehicle {
-    public String color;
-    public String material;
-    public int topSpeed;
-    public int fuelCapacity;
+class Monster {
+    String name;
+    int hp;
+    int damage;
+    int speed;
     
-    public void moving () {
-        System.out.println("The vehicle is moving right now");
+    // first way constructor -> set all of 
+    Monster (String name, int hp, int damage, int speed) {
+        this.name = name;
+        this.hp = hp;
+        this.damage = damage;
+        this.speed = speed;
     }
     
-    pubilc void braking () {
-        System.out.println("Vehicle is braking...");
+    // second way -> we want to set default value for hp and speed
+    Monster (String name, int damage) {
+        this.name = name;
+        this.damage = damage;
+        
+        // set for default value
+        this.hp = 1000;
+        this.speed = 500;
+    }
+
+    void attack () {
+        System.out.println(this.name + " attack with damage of " + this.damage);
+    }
+    
+    void printHp () {
+        System.out.println("HP: " + this.hp);
     }
 }
 ```
@@ -41,12 +59,22 @@ For the example we want to create an object in `Main.java` file
 ```
 public class Main {
     public static void main (String[] args) {
-        Vehicle myVehicle =  new Vehicle();
+    
+        Monster hydra = new Monster("hydra", 2000, 200, 15);
+        // this will call for first way constructor
         
-        myVehicle.moving(); // will print The vehicle is moving right now
+        Monster monster = new Monster("basic", 150);
+        // this will call for second way constructor -> only set the name and damage
         
-        myVehicle.material = "Adamantium";
-        System.out.println(myVehicle.material); // will print Adamantium
+        hydra.attack(); // will print "hydra attack with damage of 200
+        hydra.printHp(); // will print "HP: 2000"
+        
+        monster.attack(); // will print "monster attack with damage of 150
+        monster.printHp(); // will print "HP: 1000"
+        
+        // we can override the hp of "monster"
+        monster.hp = 1250;
+        monster.printHp(); // will print "HP: 1250"
     }
 }
 ```

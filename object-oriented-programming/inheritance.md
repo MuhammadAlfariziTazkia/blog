@@ -138,7 +138,7 @@ public class FlyingAnimal extends Animal {
 When we create an instance of `FlyingAnimal` like this :&#x20;
 
 ```
-Animal bird = new FlyingAnimal("Eagle", "1000");
+Animal bird = new FlyingAnimal("bird", "1000");
 ```
 
 We can read as `FlyingAnimal` **is a** type of an `Animal`

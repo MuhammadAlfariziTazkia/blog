@@ -89,11 +89,11 @@ class FlyingAnimal extends Animal {
 }
 ```
 
-## Advantages
+## Why we should use this concept?
 
 * **Flexibility and Modularity**&#x20;
   * We can have more than one class which every class have a same behavior context but different in behavior implementation based on class / module usages (E.g Flying Animal and Swimming Animal have some behavior context -> both of them can moving, but their have different moving way)
 * **Code reusability**
   * Function in subclass, can reuse the logic in superclass/parent class function, and adding some specific logic, for the example we can refer on `Animal` and `FlyingAnimal`, which `Animal` class basically have `moving()` function, and `FlyingAnimal` want to have `moving()` function too but with additional logic
 * **Easy to extension**
-  * When you want to have a new function logic but we already have existing function with the some context, we don't need to change the logic of existing function -> we just need to extends the class and override instead ! **Because changing existing logic which have stable functionality is too risky**
+  * When we want to have a new function logic but we already have existing function with the some context, we don't need to change the logic of existing function -> we just need to extends the class and override instead ! **Because changing existing logic which have stable functionality is too risky**

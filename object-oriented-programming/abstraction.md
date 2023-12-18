@@ -4,49 +4,123 @@ description: Abstraction Concept in Object Oriented Programming
 
 # Abstraction
 
-The main usage of abstraction is to simplify code complexity by hiding the unnecessary detail logic implementation.
+The point of abstraction is **simplify the code by hiding unnecessary detail logic implementation**
 
-To understand about abstraction concept, I will use the example of **vehicle**.
+{% hint style="info" %}
+3 Terms that we will frequently used in this discussion :
 
-We can say that the **vehicle** is an abstraction of  the **car**, **bicycle**, **motorcycle**, **plane**, or even **ship.**
+* **Abstract** -> only provide the definition
+* **Concrete** -> provide the definition including the detail logic implementation
+* **Override / Overriding** -> it can be implement **abstract** method or re-implement **concrete** method from **abstraction class**
+{% endhint %}
 
-Basically, all of vehicle can move. But the way to move a **bicycle** is totally different with how to move a **plane.**
+## Implement the Abstraction
 
-Every vehicle have their own way to moving, and some of them have a complex logic to move.&#x20;
-
-To make development easier, we can generalized the car, motorcycle, plane, and ship as **vehicle** -> so it means :&#x20;
-
-* Vehicle is abstraction class
-* Car, motorcycle, bicycle, and plane become the concrete class
-
-
-
-
-
-Abstraction concept help us to simplify code detail complexity, so it can be increase readability of our code.
-
-Abstraction objective are :&#x20;
-
-* Hide the detail of internal functionality
-* Only expose the relevant functionality or feature
-
-## Why is it Important?
-
-* Hide unnecessary complexity -> It's allow the object user using the function of the object without know about how this object is implemented
-* Easy to maintain -> by using abstraction, changes of logic implementation can be done without affected of usage of the object
-* Increase readability
-
-## How to Implement Abstraction Concept?
-
-To implement abstraction concept into our code, we can using `abstract` or `interface` class
+To implement the abstraction concept in java, we can using `abstract` and `interface` class
 
 ### Abstract Class
 
-* Is used to create partial abstraction
-* In abstract class, it's possible to create :&#x20;
-  * Abstract method -> method without code logic implementation
-  * Concrete method -> method with code logic implementation
+* Provide **partial abstraction** -> can have **abstract** method and **concrete** method
+* To create **abstract** class, we can use this syntax -> `abstract class <ClassName>`
+* To define **abstract** **method** in **abstract class** we need to provide `abstract` keyword explicitly in method definition
+
+Example :&#x20;
 
 ```
-abstract class 
+abstract class PropertyCleaningService {
+    
+    // abstract method
+    void request () {
+        System.out.println("You can request our service by call +62123123123 ...");
+    }
+    
+    int getCleaningServiceFee (int durationInHour) {
+        return durationInHour * 10;
+    }
+    
+    // concrete method
+    abstract void clean ();
+}
 ```
+
+* To implement the **abstract** **method** in **abstract class**, we need implementation class that extend to the **abstract class**&#x20;
+* The implementation class is must implement all of **abstract method** from **abstract class**
+* When we want to implement or re-implement the logic in implementation class, it's recommended to use @Override annotation.
+
+Example :&#x20;
+
+```
+class ApartmentCleaningService extends PropertyCleaningService {
+
+    // request method already have implementation in abstract class
+    // and we don't want to change default logic of request method
+    // so we don't need to implement the logic of request method in this class
+    
+    // getCleaningServiceFee already have implementation in abstract class
+    // but, I want to create different calculation for apartment property
+    // so just re-implement the logic in this class
+    
+    @Override
+    public int getCleaningServiceFee (int durationInHour) {
+        return durationInHour * 50;
+    }
+    
+    @Override
+    public void clean () {
+        System.out.println("To clean apartment, we should ask receptionist about location of our customer"); 
+    }
+}
+```
+
+### Interface Class
+
+* Provide **full abstraction** -> only have **abstract** method
+* We can create `interface` class by use this syntax -> `interface <ClassName>`
+* Don't use `abstract` keyword specifically in method definition, just use this syntax instead -> `<returnDataType> <methodName> (<parameter>);`, e.g -> `void request ();`
+
+Example :&#x20;
+
+```
+interface PropertyCleaningService {
+    void request ();
+    void clean ();
+    int getCleaningServiceFee (int durationInHour);
+}   
+```
+
+* Same as `abstract` class, we need to create implementation class to implement the logic of all of `abstract` method in `interface` class
+* We can create implementation class by use this syntax -> `class <ClassName> implements <InterfaceClass>`
+* Implementation class must implement all of methods in `interface` class
+* It's recommended to use `@Override` annotation in implementation method
+
+Example :&#x20;
+
+```
+class HouseCleaningService {
+
+    @Override
+    public void request () {
+        System.out.println("Requesting cleaning service for house type");
+    }
+    
+    @Override
+    public void clean () {
+        System.out.println("Cleaning cleaning");
+    }
+    
+    @Override
+    public int getCleaningServiceFee (int durationInHour) {
+        return durationInHour * 15;
+    }
+}    
+```
+
+## Why is it Important?
+
+* **Hide unnecessary code complexity**
+  * It makes easier for developer to check "what does this function can do?" because developer just need to check `abstract` / `interface` to check this. If we don't use abstraction concept, developer need to deep dive into a class that contain full of implementation logic&#x20;
+* **Easy to maintain**&#x20;
+  * When we want to create feature / logic, modify existing code can be risky because we change something that is already stable. So, instead of modifying existing code, we just need to create another implementation class to implement new feature logic
+* **Increase readability**
+  * Because we splitting class for definition and class for implementation
+* **Support polymorphism**

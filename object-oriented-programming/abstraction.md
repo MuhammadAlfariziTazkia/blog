@@ -43,7 +43,7 @@ abstract class PropertyCleaningService {
 }
 ```
 
-* To implement the **abstract** **method** in **abstract class**, we need implementation class that extend to the **abstract class**&#x20;
+* To implement the **abstract** **method** in **abstract class**, we need implementation class that **extend** to the **abstract class**&#x20;
 * The implementation class is must implement all of **abstract method** from **abstract class**
 * When we want to implement or re-implement the logic in implementation class, it's recommended to use @Override annotation.
 
@@ -117,10 +117,55 @@ class HouseCleaningService {
 
 ## Why is it Important?
 
-* **Hide unnecessary code complexity**
+* **Hide unnecessary code complexity -> Increase readability**
   * It makes easier for developer to check "what does this function can do?" because developer just need to check `abstract` / `interface` to check this. If we don't use abstraction concept, developer need to deep dive into a class that contain full of implementation logic&#x20;
 * **Easy to maintain**&#x20;
   * When we want to create feature / logic, modify existing code can be risky because we change something that is already stable. So, instead of modifying existing code, we just need to create another implementation class to implement new feature logic
-* **Increase readability**
-  * Because we splitting class for definition and class for implementation
-* **Support polymorphism**
+* **Support polymorphism,** for the example:&#x20;
+  * We want to have entity of **Plane**, **Car**, **Motorcycle**, and **Bike**. We know that all of them actually is a **Vehicle** that should have basic behavior which are **moving** and **brake.**&#x20;
+  * So we can use `interface` class of **Vehicle** that contain **abstract method** of `move()` and `brake()`.
+  * We can say that `Vehicle` class is abstraction class because we just to define **WHAT** is all of **Vehicle** things can do, but for **HOW** vehicle can do that, it's totally depend on entity that implement `Vehicle` class -> because **how** can we move the **plane** is totally different with **how** can we move the **bike.**
+  * So we can say that **plane**, **car**, **motorcycle**, and **bike** are concrete class of `Vehicle`. All of them can move and brake but about the detail of implementation it's on each entity/concrete class.
+
+## Abstract vs Interface Class
+
+We already know that there are two way to implement abstraction concept into our java codes, which are by using `abstract` and `interface` class.
+
+So the next question is how to choose one of them?&#x20;
+
+The simple answer for that question -> We already know that the different between them is `abstract` class can have **concrete** method whereas `interface` can't do that.&#x20;
+
+**So if you want to create a abstraction class with default function implementation, it's better to use `abstract` class instead of `interface`.**
+
+Besides that, from the example above maybe you noticed that implementation class of `abstract` class using `extends` keyword whereas implementation class of `interface` class using `implements` keyword.
+
+{% hint style="warning" %}
+We can **implements** more than one class but we can only **extends** 1 class
+{% endhint %}
+
+**So when you want to have a class that can implements more than 1 class, you should choose `interface`. For the example :**&#x20;
+
+```
+interface CanSwim {
+    void swim ();
+}
+
+interface CanFly {
+    void fly ();
+}
+
+interface CanWalk () {
+    void walk ();
+}
+
+// bird only flying
+class Bird implements CanFly {
+}
+
+// we want have super human that can swim, fly, and walk -> so implement all of them !
+class SuperHuman implements CanSwim, CanFly, CanWalk{
+}
+
+class AmphibiAnimal implements CanWalk, CanSwim {
+}
+```
